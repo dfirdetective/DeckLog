@@ -13,7 +13,7 @@ This prompt will auto-focus, allow you to use Tab to go to the next input box, a
 The output file will look similar to this depending on changes to your configuration.  
 
 # DeckLog Setup
-If using the python script, the requirements are Python 3, pyperclip, and tkinter for the pop-ups.  
+If using the python script, the requirements are Python 3 and pyperclip.  
 If using the executable, simply download `DeckLog.exe`  
 Output CSV files will go to the location that the script is running from. A suggested set up would be a Desktop or Documents folder named `DeckLog` that contains the py/exe and the `deck_log.csv` will output to the same folder.  
 Open StreamDeck Configuration, choose an unused button location and add an `Open` button. Title it however you like and select the py/exe file as the App/File and add the prompt argument to the end. Ex: Title: Meal App/File: `C:\User\User\Documents\DeckLog.exe Meal` Repeat this for however many buttons/prompts you would like to have their own button.   
@@ -35,8 +35,8 @@ For example, the default `Meal` prompt will provide 3 prompts. `What meal is thi
       ["Quality", "What was the quality of this food?"]
     ]
 ```
-When customizing prompts.json, you can create new columns if the default `Reason`, `Log`, `Quantity`, and `Quality` are not enough or you'd like more specific separation. You can also pre-create the output file or rearrange the header rows in the way you prefer once created.  
-If you use the exe, you will not be able to customize the prompts at this point. However, it is something I could implement, if interested. You **can** rearranged the output file headers.  
+When customizing prompts.json, you can create new columns if the default `Reason`, `Log`, `Quantity`, and `Quality` are not enough or you'd like more specific separation. You can also pre-create the output file with the headers in the order you like or rearrange the header rows in the way you prefer once created.  
+If you use the exe, you will not be able to customize the prompts at this point. However, it is something I could implement, if interested. You **can** rearrange the output file headers.  
 
 # Basic Troubleshooting
 **I'm getting an access error for the CSV file. Help?**  
