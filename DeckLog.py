@@ -17,7 +17,7 @@ def get_resource_path(filename):
 
 
 #  Load Prompts from JSON
-with open(get_resource_path("prompts-public.json"), "r") as f:
+with open(get_resource_path("prompts.json"), "r") as f:
     prompt_map = json.load(f)
 
 
