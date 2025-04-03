@@ -13,7 +13,7 @@ This prompt will auto-focus, allow you to use Tab to go to the next input box, a
 The output file will look similar to this depending on changes to your configuration.  
 
 # DeckLog Setup
-If using the python script, the requirements are Python 3 and tkinter for the pop-ups.  
+If using the python script, the requirements are Python 3, pyperclip, and tkinter for the pop-ups.  
 If using the executable, simply download `DeckLog.exe`  
 Output CSV files will go to the location that the script is running from. A suggested set up would be a Desktop or Documents folder named `DeckLog` that contains the py/exe and the `deck_log.csv` will output to the same folder.  
 Open StreamDeck Configuration, choose an unused button location and add an `Open` button. Title it however you like and select the py/exe file as the App/File and add the prompt argument to the end. Ex: Title: Meal App/File: `C:\User\User\Documents\DeckLog.exe Meal` Repeat this for however many buttons/prompts you would like to have their own button.   
