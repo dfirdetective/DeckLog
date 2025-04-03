@@ -5,15 +5,18 @@ import csv
 import tkinter as tk
 from datetime import datetime
 
-#  Helper: Support for PyInstaller Exe Version 
+
+#  Helper: Support for PyInstaller Exe Version
 def get_resource_path(filename):
     if hasattr(sys, '_MEIPASS'):  # PyInstaller temp folder
         return os.path.join(sys._MEIPASS, filename)
     return os.path.join(os.path.abspath("."), filename)
 
-#  Load Prompts from JSON 
+
+#  Load Prompts from JSON
 with open(get_resource_path("prompts.json"), "r") as f:
     prompt_map = json.load(f)
+
 
 #  GUI: Dropdown Picker for the List option
 def pick_log_type():
@@ -40,7 +43,8 @@ def pick_log_type():
 
     return selected.get("label", "Log")
 
-#  Tab Navigation Between Fields 
+
+#  Tab Navigation Between Fields
 def focus_next(event, widgets, current_index):
     next_index = current_index + 1
     if next_index < len(widgets):
@@ -49,50 +53,61 @@ def focus_next(event, widgets, current_index):
         event.widget.tk_focusNext().focus_set()
     return "break"
 
-#  GUI: Collect Prompt Inputs 
-def collect_inputs(prompt_list, log_label):
+
+#  GUI: Collect Prompt Inputs
+def collect_inputs(prompt_list):
     data = {}
 
     def submit(event=None):
         for (col, _), widget in zip(prompt_list, widgets):
-            data[col] = widget.get("1.0", tk.END).strip()
-        root.quit()
+            if isinstance(widget, tk.Text):
+                data[col] = widget.get("1.0", tk.END).strip()
+            else:
+                data[col] = widget.get()
         root.destroy()
 
     root = tk.Tk()
-    root.title(f"Log Entry: {log_label}")
-    root.geometry("700x400")
+    root.title(f"DeckLog: {label}")
+    root.geometry("600x400")
+    root.columnconfigure(0, weight=0)
+    root.columnconfigure(1, weight=1) 
 
     widgets = []
+
     for i, (column, prompt_text) in enumerate(prompt_list):
+        root.rowconfigure(i, weight=1)
+
         tk.Label(root, text=prompt_text).grid(row=i, column=0, sticky="e", padx=5, pady=5)
-        text_box = tk.Text(root, width=70, height=4)
-        text_box.grid(row=i, column=1, padx=5, pady=5)
-        text_box.bind("<Tab>", lambda e, index=i: focus_next(e, widgets, index))
+
+        text_box = tk.Text(root, height=5)
+        text_box.grid(row=i, column=1, padx=5, pady=5, sticky="nsew")
+        text_box.bind("<Tab>", lambda e, index=i: focus_next(e, widgets, i))
         if i == 0:
             text_box.focus_set()
         widgets.append(text_box)
 
-    tk.Button(root, text="Submit", command=submit).grid(columnspan=2, pady=10)
+    submit_btn = tk.Button(root, text="Submit", command=submit)
+    submit_btn.grid(columnspan=2, pady=10)
+
     root.bind("<Return>", submit)
     root.mainloop()
-
     return data
 
-#  Get Log Type from CLI or Dropdown 
+
+#  Get Log Type from CLI or Dropdown
 arg = sys.argv[1] if len(sys.argv) > 1 else "List"
 label = arg.strip()
 
 if label.lower() == "list":
     label = pick_log_type()
-  
+
 # Default to "Log" question if the label does not exist in prompts.json
 prompt_list = prompt_map.get(label, [["Entry", f"What would you like to log for {label}?"]])
 
-#  Get Data from GUI Input 
-data = collect_inputs(prompt_list, label)
+#  Get Data from GUI Input
+data = collect_inputs(prompt_list)
 
-#  Log to CSV File 
+#  Log to CSV File
 log_file = "deck_log.csv"
 file_exists = os.path.isfile(log_file)
 
