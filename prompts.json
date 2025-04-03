@@ -1,0 +1,44 @@
+{
+    "Mood": [
+      ["Log", "How are you feeling?"],
+      ["Reason", "Why do you feel that way?"]
+    ],
+    "Sleep": [
+      ["Quantity", "How many hours did you sleep?"],
+      ["Quality", "How was the sleep quality?"]
+    ],
+    "Energy": [
+      ["Quality", "Energy level [1 to 10]?"],
+      ["Reason", "What's affecting your energy?"]
+    ],
+    "Gratitude": [
+      ["Log", "What are you thankful for right now?"]
+    ],
+    "Meal": [
+      ["Reason", "What meal is this?"],
+      ["Log", "What did you eat?"],
+      ["Quality", "What was the quality of this food?"]
+    ],
+    "Task": [
+      ["Log", "What is the name of the task?"],
+      ["Reason", "Start/Stop/Problem?"]
+    ],
+    "Log": [
+      ["Log", "What do you want to log?"],
+      ["Reason", "Is there a reason?"]
+    ],
+    "Exercise": [
+      ["Log", "What kind of exercise did you do?"],
+      ["Quality", "What was the quality of this exercise?"]
+    ],
+    "Entertainment": [
+      ["Log", "What entertainment are you consuming today?"],
+      ["Quality", "Is it good?"]
+    ],
+    "Ideas": [
+      ["Log", "What idea do you want to quick log?"]
+    ],
+    "Family": [
+      ["Log", "Any updates?"]
+    ]
+}
